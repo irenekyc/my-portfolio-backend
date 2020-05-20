@@ -8,7 +8,9 @@ import Featured from './components/Featured'
 import Modal from './layout/Modal'
 import FilterBar from './components/FilterBar'
 import PortfolioMain from './components/PortfolioMain'
+import Pagination from './components/Pagination'
 import Footer from './components/Footer'
+
 
 import {createStore, applyMiddleware} from 'redux'
 import allReducers from './reducers'
@@ -32,7 +34,9 @@ const App = ()=>{
       <Hero />
       <Featured />
       <FilterBar />
+      <Pagination />
       <PortfolioMain  />
+      <Pagination />
       <Footer />
 
       <Modal />

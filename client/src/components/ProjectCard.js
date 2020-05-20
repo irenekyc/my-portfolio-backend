@@ -2,6 +2,7 @@ import React from 'react'
 import {useDispatch} from 'react-redux'
 import {openProject} from '../actions/data'
 import {openPortfolio} from '../actions/modal'
+import MainTagIcon from './MainTagIcon'
 
 
 const ProjectCard = ({ data})=>{
@@ -15,8 +16,8 @@ const ProjectCard = ({ data})=>{
         <div className="portfolio-card">
         <div className="portfolio-card-heading">
             <div className="portfolio-card-heading-main">
-                {/* <i className="fab fa-css3-alt"></i> */}
-                {data.mainTag}
+                <MainTagIcon tag={data.mainTag} />
+                
             </div>
             <div className="portfolio-card-heading-links">
                 <a href={data.projectUrl} rel="noopener noreferrer" target="_blank"><i className="fas fa-globe"></i></a>

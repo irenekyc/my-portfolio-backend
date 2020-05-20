@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import ProjectCard from './ProjectCard'
 import {fetchData} from '../actions/data'
 
-const PortfolioMain = ({open})=>{
+const PortfolioMain = ()=>{
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(fetchData())
@@ -12,7 +12,7 @@ const PortfolioMain = ({open})=>{
     return(
         <section className="portfolio-container">
             {projects !== null && projects.map(p=>{
-                return <ProjectCard key={p._id} data={p} click={(e)=>open(e)}/>
+                return <ProjectCard key={p._id} data={p}/>
             })}
 
         </section>
