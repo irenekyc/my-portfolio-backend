@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "env-cmd -f ./config/dev.env nodemon server.js",
-    "start": "node server.js"
+    "dev": "concurrently \"npm run client\" \"npm run server\"",
+    "start": "node server.js",
+    "client": "npm start --prefix client",
+    "server": "env-cmd -f ./config/dev.env nodemon server.js"
   },
   "author": "",
   "license": "ISC",
