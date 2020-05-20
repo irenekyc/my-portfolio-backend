@@ -1,35 +1,43 @@
 import React from 'react'
+import {useSelector, useDispatch} from 'react-redux'
+import {closePortfolio} from '../actions/modal'
+
 
 const ModalPortfolio =()=>{
+    const projectdata = useSelector(state=> state.data)
+    const dispatch = useDispatch()
+  
     return(
 
-        <div className="portfolio-modal">
+        projectdata!==null && projectdata.projectDetails !==null &&(
+            <div className="portfolio-modal">
             <div className="portfolio-details">
-                <div id="close-portfolio"> <span id="close-portfolio-btn">X </span></div>
+                <div id="close-portfolio"> <span onClick={()=>dispatch(closePortfolio())}>X </span></div>
                 <div className="portfolio-details-title">
-                    <h1>JS Form Validation</h1>
+                    <h1>
+                        { projectdata.projectDetails.title}
+                    </h1>
                 </div>
                 <div className="portfolio-details-image">
-                    <img src="images/profile-thumbnail-2.jpg" alt="Irene K JS developer" />
+                    <img src={`images/${projectdata.projectDetails.image}`} alt={ projectdata.projectDetails.title} />
                 </div>
                 <div className="portfolio-details-descriptions">
-                    <p>This is a simple HTML form validation using javascript to check validity between definted pattern (regular expression) and user input. 
-                        Validation includes email format, strict password (min length 8 characters with at least one uppercase and one special character)</p>
+                    <p>{ projectdata.projectDetails.excerpt}</p>
+                    <p>{ projectdata.projectDetails.fullDescription}</p>
                 </div>
                 <div className="portfolio-details-tools">
                     <h4> Tools & Libraries </h4>
-                    <li>Vanillia Javascript</li>
-                    <li> HTML5</li>
-                    <li> CSS </li>
-                    <li> Regular Expression</li>
+                    <p>{ projectdata.projectDetails.tools}</p>
                 </div>
                 <div className="links">
-                <a href="https://irenekyc.github.io/form-validation-advanced/" rel="noopener noreferrer" target="_blank">  <i className="fas fa-globe"></i> - Live Site</a>
-                <a href="https://github.com/irenekyc/form-validation-advanced/" rel="noopener noreferrer" target="_blank"><i className="fab fa-github"></i> - Code</a>
+                <a href={ projectdata.projectDetails.projectUrl} rel="noopener noreferrer" target="_blank">  <i className="fas fa-globe"></i> - Live Site</a>
+                <a href={ projectdata.projectDetails.github} rel="noopener noreferrer" target="_blank"><i className="fab fa-github"></i> - Code</a>
             </div>
             </div>
 
         </div>
+        )
+       
     )
 }
 

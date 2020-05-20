@@ -1,31 +1,42 @@
 import React from 'react'
+import {useDispatch} from 'react-redux'
+import {openProject} from '../actions/data'
+import {openPortfolio} from '../actions/modal'
 
-const ProjectCard = ()=>{
+
+const ProjectCard = ({ data})=>{
+    const dispatch = useDispatch()
+
+    const openProjectDetails = ()=>{
+        dispatch(openProject(data._id))
+        dispatch(openPortfolio())
+    }
     return(
         <div className="portfolio-card">
         <div className="portfolio-card-heading">
             <div className="portfolio-card-heading-main">
-                <i className="fab fa-css3-alt"></i>
+                {/* <i className="fab fa-css3-alt"></i> */}
+                {data.mainTag}
             </div>
             <div className="portfolio-card-heading-links">
-                <a href="https://irenekyc.github.io/bg-animated-landing-page/" rel="noopener noreferrer" target="_blank"><i className="fas fa-globe"></i></a>
-                <a href="https://github.com/irenekyc/bg-animated-landing-page" rel="noopener noreferrer" target="_blank"><i className="fab fa-github"></i></a>
+                <a href={data.projectUrl} rel="noopener noreferrer" target="_blank"><i className="fas fa-globe"></i></a>
+                <a href={data.github} rel="noopener noreferrer" target="_blank"><i className="fab fa-github"></i></a>
             </div>
         </div>
         <div className="portfolio-card-title">
-            <h1>Animated Page with Pure CSS</h1>
+            <h1>{data.title}</h1>
         </div>
         <div className="portoflio-card-image">
-            <img src="images/bg-animated.png" alt="" />
+            <img src={`images/${data.image}`} alt="" />
         </div>
         <div className="portoflio-card-content">
-            <p>This is a simple ladning page with animated background, persudo classNamees for background overlay pattern. 
+            <p>{data.excerpt} 
                 </p>
     
             
         </div>
         <div className="portfolio-card-learn-more">
-            <button id="open-portfolio-details"> Learn more</button>
+            <button onClick={openProjectDetails} id={data._id}> Learn more</button>
         </div>
 
     </div>
