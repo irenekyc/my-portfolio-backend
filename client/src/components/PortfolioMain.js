@@ -1,21 +1,25 @@
-import React, { useEffect } from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import React from 'react'
+import {useSelector} from 'react-redux'
 import ProjectCard from './ProjectCard'
-import {fetchData} from '../actions/data'
+import Spinner from './Spinner/Spinner'
+
+
 
 const PortfolioMain = ()=>{
-    const dispatch = useDispatch()
-    useEffect(()=>{
-        dispatch(fetchData())
-    }, [])
     const projects = useSelector(state=> state.data.all)
+
+
+
     return(
-        <section className="portfolio-container">
-            {projects !== null && projects.map(p=>{
+        
+        <section  className="portfolio-container">
+            {projects !== null ? projects.map(p=>{
                 return <ProjectCard key={p._id} data={p}/>
-            })}
+            }): <Spinner />}
 
         </section>
+      
+
 
     )
 }

@@ -1,6 +1,7 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect} from 'react';
+import {useDispatch} from 'react-redux'
+import {fetchData} from './actions/data'
 import './App.css';
-
 
 import NavBar from './components/Navbar'
 import Hero from './components/Hero'
@@ -12,36 +13,29 @@ import Pagination from './components/Pagination'
 import Footer from './components/Footer'
 
 
-import {createStore, applyMiddleware} from 'redux'
-import allReducers from './reducers'
-import {Provider } from 'react-redux'
-import {composeWithDevTools} from 'redux-devtools-extension'
-import thunk from 'redux-thunk'
-
-let initialState = {}
-const middleware = [thunk]
-const store = createStore(allReducers, initialState, composeWithDevTools(applyMiddleware(...middleware)));
-
 const App = ()=>{
- 
-
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(fetchData())
+    window.scroll(0,0)
+  }, [])
 
   return(
 
-<Provider store ={store}>
     <Fragment>
       <NavBar />
+
       <Hero />
       <Featured />
       <FilterBar />
       <Pagination />
       <PortfolioMain  />
       <Pagination />
-      <Footer />
 
+      <Footer />
       <Modal />
     </Fragment>
-  </Provider>     
+ 
 
   )
 }

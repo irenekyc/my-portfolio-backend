@@ -2,7 +2,8 @@ const initialState ={
     curPage: 0,
     sort: "desc",
     filter: "none",
-    totalPages: 0
+    totalPages: 0,
+    init: true,
 }
 
 const statusReducer = (state=initialState, {type, page, sort, filter, totalPages})=>{
@@ -12,7 +13,8 @@ const statusReducer = (state=initialState, {type, page, sort, filter, totalPages
                 curPage: page,
                 sort: sort,
                 filter: filter,
-                totalPages: totalPages
+                totalPages: totalPages,
+                init:false
             }
         default:
             return state;
